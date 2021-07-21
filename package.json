@@ -1,0 +1,17 @@
+{
+  "name": "linechatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1",
+    "linebot": "^1.6.1",
+    "request": "^2.88.2"
+  }
+}
