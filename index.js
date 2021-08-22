@@ -46,15 +46,20 @@ function _covid19() {
       try {
         var $ = cheerio.load(body);
         var target = $(".JQdotdotdot");
-        try {
-          today_case = target[0].children[0].data;
-          console.log(today_date + " " + today_case);
-          bot.broadcast(today_date + " " + today_case);
-          sleep(10000).then(() => {
-            process.exit(1);
-          });
-        } catch (error) {
-          console.log("不是不報，時候未到");
+        for (i in target) {
+          try {
+            today_case = target[i].children[0].data;
+            if (today_case.indexOf("新增") != -1 && today_case.indexOf("本土") != -1 && today_case.indexOf("例COVID-19確定病例") != -1) {
+              console.log(today_date + " " + today_case);
+              bot.broadcast(today_date + " " + today_case)
+              sleep(10000).then(() => {
+                process.exit(1);
+              });
+            }
+          } catch (error) {
+            console.log("不是不報，時候未到");
+            break;
+          }
         }
       } catch (error) {
         console.log("疾管署官網又死掉了");
