@@ -36,7 +36,7 @@ function _covid19() {
   let today = year + "." + month + "." + date;
   let today_date = year + "/" + month + "/" + date;
   request({
-    url: "https://www.cdc.gov.tw/Bulletin/List/MmgtpeidAR5Ooai4-fgHzQ?keyword=" + encodeURI("本土") + "&startTime=" + today + "&endTime=" + today,
+    url: "https://www.cdc.gov.tw/Bulletin/List/MmgtpeidAR5Ooai4-fgHzQ?startTime=" + today + "&endTime=" + today,
     method: "GET"
   }, function (error, response, body) {
     if (error || !body) {
@@ -49,7 +49,7 @@ function _covid19() {
         for (i in target) {
           try {
             today_case = target[i].children[0].data;
-            if (today_case.indexOf("新增") != -1 && today_case.indexOf("本土") != -1 && today_case.indexOf("例COVID-19確定病例") != -1) {
+            if (today_case.indexOf("新增") != -1 && today_case.indexOf("COVID-19") != -1 && today_case.indexOf("病例") !=-1) {
               console.log(today_date + " " + today_case);
               bot.broadcast(today_date + " " + today_case)
               sleep(10000).then(() => {
